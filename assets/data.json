@@ -1,0 +1,36 @@
+{
+    "id" : 1,
+    "username" : "Paul",
+    "image" : "/assets/peter.jpeg",
+    "relation": "me",
+    "partners" : [
+        {
+        "id" : 2,
+        "username": "Alice",
+        "image" : "/assets/peter.jpeg",
+        "relation": "partner"
+        },
+        {
+            "id" : 3,
+            "username": "Rebeca",
+            "image" : "/assets/rebeca.jpeg",
+            "relation": "partner"
+        }
+],
+    "siblings" : [
+        {
+            "id" : 4,
+            "username": "Jake",
+            "image" : "/assets/peter.jpeg",
+            "relation": "Younger Brother"
+        },
+        {
+            "id" : 5,
+            "username": "Alex",
+            "image" : "/assets/peter.jpeg",
+            "relation": "Older Brother"
+        }
+    ],
+    "parents" : "",
+    "children" : ""
+}

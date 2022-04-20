@@ -1,0 +1,419 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+        monospace;
+}
+
+.tree-container {
+    --line-color: rgb(255, 255, 255);
+    width: 100%;
+    height: 100vh;
+    overflow: auto;
+    /* background-image: linear-gradient(to right top, #052637, #005570, #00888b, #00bb7c, #12eb3f); */
+    background-color: #36096d;
+    background-image: linear-gradient(315deg, #36096d 0%, #37d5d6 74%);
+    padding: 50px;
+    padding-top: 10px;
+}
+
+.tree-container ul {
+    display: flex;
+    justify-content: center;
+    padding-top: 40px;
+    position: relative;
+    padding-left: 0px;
+}
+
+.tree-container ul ul::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    border-left: 2px solid var(--line-color);
+    width: 0;
+    height: 40px;
+}
+
+.tree-container li {
+    list-style-type: none;
+    float: left;
+    text-align: center;
+    position: relative;
+    white-space: nowrap;
+    padding: 0 10px;
+}
+
+.tree-container li::before,
+.tree-container li::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 50%;
+    border-top: 2px solid var(--line-color);
+    width: 50%;
+    height: 18px;
+}
+
+.tree-container li::after {
+    right: auto;
+    left: 50%;
+    /* border-left: 2px solid var(--line-color); */
+}
+
+.tree-container li:only-child::after,
+.tree-container li:only-child::before {
+    display: none;
+}
+
+.tree-container li:only-child {
+    padding-top: 0;
+}
+
+.tree-container li:first-child::before,
+.tree-container li:last-child::after {
+    border: 0 none;
+}
+
+.tree-container li:last-child::before {
+    /* border-right: 2px solid var(--line-color); */
+    border-radius: 0 5px 0 0;
+    -webkit-border-radius: 0 5px 0 0;
+    -moz-border-radius: 0 5px 0 0;
+}
+
+.tree-container li:first-child::after {
+    border-radius: 5px 0 0 0;
+    -webkit-border-radius: 5px 0 0 0;
+    -moz-border-radius: 5px 0 0 0;
+}
+
+.tree-card {
+    overflow: hidden;
+    display: inline-flex;
+    padding-bottom: 40px;
+    position: relative;
+    flex-direction: column;
+}
+
+.tree-card::before,
+.tree-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 50%;
+    border-bottom: 2px solid var(--line-color);
+    width: 50%;
+    height: 40px;
+}
+
+.tree-card:first-child:before,
+.tree-card:first-child:after {
+    left: 50%;
+}
+
+.tree-card::after {
+    right: auto;
+    left: 50%;
+    border-left: 2px solid var(--line-color);
+}
+
+.tree-card:only-child::after,
+.tree-card:only-child::before {
+    display: none;
+}
+
+.tree-card:only-child {
+    padding-top: 0;
+}
+
+.tree-card:first-child::before,
+.tree-card:last-child::after,
+.tree-card:nth-child(2)::after {
+    border: 0 none;
+}
+
+.tree-card:first-child::after {
+    border-bottom-left-radius: 5px;
+}
+
+.tree-card:last-child::before,
+.tree-card:nth-child(2)::before {
+    border-right: 2px solid var(--line-color);
+    border-bottom-right-radius: 5px;
+}
+
+.tree-card:last-child::after {
+    border-bottom: 0 none;
+}
+
+
+/* card top line */
+.tree-card-line-top {
+    height: 40px;
+    width: 100%;
+    position: relative;
+}
+
+.tree-card .tree-card-line-top::before,
+.tree-card .tree-card-line-top::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 50%;
+    border-top: 2px solid var(--line-color);
+    width: 50%;
+    height: 40px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.tree-card .tree-card-line-top::after {
+    right: auto;
+    left: 50%;
+    border-left: 2px solid var(--line-color);
+    border-top-left-radius: 5px;
+}
+
+.tree-card:nth-child(2) .tree-card-line-top::after {
+    border-left: 0 none;
+}
+
+.tree-container li:last-child>.tree-card:first-child .tree-card-line-top::after {
+    border-left: 0 none;
+}
+
+.tree-container li:last-child>.tree-card:nth-child(2) .tree-card-line-top::after,
+.tree-container li:last-child>.tree-card:only-child .tree-card-line-top::after {
+    left: auto;
+    right: 50%;
+    border-right: 2px solid var(--line-color);
+    border-top-right-radius: 5px;
+}
+
+.tree-card:first-child .tree-card-line-top::before,
+.tree-card:last-child .tree-card-line-top::after {
+    border-top: 0 none;
+}
+
+.tree-card:last-child .tree-card-line-top::after,
+.tree-card:nth-child(2) .tree-card-line-top::after {
+    border-top: 0 none;
+}
+
+.tree-container ul:first-child>li:first-child>.tree-card>.tree-card-line-top::before,
+.tree-container ul:first-child>li:first-child>.tree-card>.tree-card-line-top::after {
+    border: 0 none;
+}
+
+
+
+
+
+
+
+
+.card-image {
+    box-sizing: border-box;
+    position: relative;
+    background-color: rgb(255, 255, 255);
+    width: 250px;
+    height: 300px;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 0 10px;
+    
+    will-change: transform;
+    transition: transform 450ms;
+}
+.card-image:hover {
+    cursor: pointer;
+    
+    transition: transform 120ms;
+    transform: translateY(-10px);
+}
+
+.card-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.image-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-image: linear-gradient(to top, #000000bd, #00000079, #0000004b, #0000001a, #00000000);
+    height: 35%;
+    width: 100%;
+    text-align: right;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 10px;
+    box-sizing: border-box;
+    z-index: 2;
+}
+
+.image-caption-text {
+    display: flex;
+    flex-direction: column;
+    text-shadow: 2px 2px 4px rgba(33, 33, 33, 1);
+}
+
+.image-caption-text span:nth-child(1) {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: rgb(255, 255, 255);
+}
+
+.image-caption-text span:nth-child(2) {
+    font-size: 1rem;
+    font-weight: 500;
+    color: rgb(255, 255, 255);
+}
+
+
+
+
+
+
+
+
+
+
+/*----------------genealogy-scroll----------*/
+
+/* .genealogy-scroll::-webkit-scrollbar {
+    width: 5px;
+    height: 8px;
+}
+.genealogy-scroll::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: #e4e4e4;
+}
+.genealogy-scroll::-webkit-scrollbar-thumb {
+    background: #212121;
+    border-radius: 10px;
+    transition: 0.5s;
+}
+.genealogy-scroll::-webkit-scrollbar-thumb:hover {
+    background: #d5b14c;
+    transition: 0.5s;
+} */
+
+
+/*----------------genealogy-tree----------*/
+/* .genealogy-body{
+    white-space: nowrap;
+    overflow-y: hidden;
+    padding: 50px;
+    min-height: 500px;
+    padding-top: 10px;
+    text-align: center;
+}
+.genealogy-tree{
+  display: inline-block;
+}
+.genealogy-tree ul {
+    padding-top: 20px; 
+    position: relative;
+    padding-left: 0px;
+    display: flex;
+    justify-content: center;
+}
+.genealogy-tree li {
+    float: left; text-align: center;
+    list-style-type: none;
+    position: relative;
+    padding: 20px 5px 0 5px;
+}
+.genealogy-tree li::before, .genealogy-tree li::after{
+    content: '';
+    position: absolute; 
+  top: 0; 
+  right: 50%;
+    border-top: 2px solid #ccc;
+    width: 50%; 
+  height: 18px;
+}
+.genealogy-tree li::after{
+    right: auto; left: 50%;
+    border-left: 2px solid #ccc;
+}
+.genealogy-tree li:only-child::after, .genealogy-tree li:only-child::before {
+    display: none;
+}
+.genealogy-tree li:only-child{ 
+    padding-top: 0;
+}
+.genealogy-tree li:first-child::before, .genealogy-tree li:last-child::after{
+    border: 0 none;
+}
+.genealogy-tree li:last-child::before{
+    border-right: 2px solid #ccc;
+    border-radius: 0 5px 0 0;
+    -webkit-border-radius: 0 5px 0 0;
+    -moz-border-radius: 0 5px 0 0;
+}
+.genealogy-tree li:first-child::after{
+    border-radius: 5px 0 0 0;
+    -webkit-border-radius: 5px 0 0 0;
+    -moz-border-radius: 5px 0 0 0;
+}
+.genealogy-tree ul ul::before{
+    content: '';
+    position: absolute; top: 0; left: 50%;
+    border-left: 2px solid #ccc;
+    width: 0; height: 20px;
+}
+.genealogy-tree li a{
+    text-decoration: none;
+    color: #666;
+    font-family: arial, verdana, tahoma;
+    font-size: 11px;
+    display: inline-block;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+}
+
+.genealogy-tree li a:hover+ul li::after, 
+.genealogy-tree li a:hover+ul li::before, 
+.genealogy-tree li a:hover+ul::before, 
+.genealogy-tree li a:hover+ul ul::before{
+    border-color:  #fbba00;
+} */
+
+/*--------------memeber-card-design----------*/
+/* .member-view-box{
+    padding:0px 20px;
+    text-align: center;
+    border-radius: 4px;
+    position: relative;
+}
+.member-image{
+    width: 60px;
+    position: relative;
+}
+.member-image img{
+    width: 60px;
+    height: 60px;
+    border-radius: 6px;
+  background-color :#000;
+  z-index: 1;
+} */
