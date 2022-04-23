@@ -1,15 +1,17 @@
-// $(function () {
-//     $('.genealogy-tree ul').hide();
-//     $('.genealogy-tree>ul').show();
-//     $('.genealogy-tree ul.active').show();
-//     $('.genealogy-tree li').on('click', function (e) {
-//         var children = $(this).find('> ul');
-//         if (children.is(":visible")) children.hide('fast').removeClass('active');
-//         else children.show('fast').addClass('active');
-//         e.stopPropagation();
-//     });
-// });
 
+// zoom and pan
+
+const tree = document.querySelector(".tree-container")
+panzoom(tree)
+
+// scroll to me
+
+const me = document.querySelector('#me')
+document.onload(
+    me.scrollIntoView()
+)
+
+// data
 const apiUrl = `/assets/data.json`;
 
 const getData = async (url) => {

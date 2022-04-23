@@ -13,21 +13,25 @@ code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
         monospace;
 }
-
-.tree-container {
-    --line-color: rgb(255, 255, 255);
+.tree {
     width: 100%;
     height: 100vh;
-    overflow: auto;
-    /* background-image: linear-gradient(to right top, #052637, #005570, #00888b, #00bb7c, #12eb3f); */
+    overflow: hidden;
     background-color: #36096d;
     background-image: linear-gradient(315deg, #36096d 0%, #37d5d6 74%);
     padding: 50px;
     padding-top: 10px;
 }
+.tree-container {
+    --line-color: rgb(255, 255, 255);
+    overflow: hidden;
+    width: fit-content;
+    height: fit-content;
+}
 
 .tree-container ul {
     display: flex;
+    flex-wrap: nowrap;
     justify-content: center;
     padding-top: 40px;
     position: relative;
@@ -45,7 +49,7 @@ code {
 }
 
 .tree-container li {
-    list-style-type: none;
+    list-style: none;
     float: left;
     text-align: center;
     position: relative;
@@ -84,18 +88,18 @@ code {
     border: 0 none;
 }
 
-.tree-container li:last-child::before {
-    /* border-right: 2px solid var(--line-color); */
+/* .tree-container li:last-child::before {
+    border-right: 2px solid var(--line-color);
     border-radius: 0 5px 0 0;
     -webkit-border-radius: 0 5px 0 0;
     -moz-border-radius: 0 5px 0 0;
-}
+} */
 
-.tree-container li:first-child::after {
+/* .tree-container li:first-child::after {
     border-radius: 5px 0 0 0;
     -webkit-border-radius: 5px 0 0 0;
     -moz-border-radius: 5px 0 0 0;
-}
+} */
 
 .tree-card {
     overflow: hidden;
@@ -143,13 +147,13 @@ code {
 }
 
 .tree-card:first-child::after {
-    border-bottom-left-radius: 5px;
+    border-bottom-left-radius: 10px;
 }
 
 .tree-card:last-child::before,
 .tree-card:nth-child(2)::before {
     border-right: 2px solid var(--line-color);
-    border-bottom-right-radius: 5px;
+    border-bottom-right-radius: 10px;
 }
 
 .tree-card:last-child::after {
@@ -173,49 +177,53 @@ code {
     border-top: 2px solid var(--line-color);
     width: 50%;
     height: 40px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
 }
 
 .tree-card .tree-card-line-top::after {
     right: auto;
     left: 50%;
     border-left: 2px solid var(--line-color);
-    border-top-left-radius: 5px;
+}
+.tree-container li:first-child>.tree-card:first-child .tree-card-line-top::after {
+    border-top-left-radius: 10px;
 }
 
-.tree-card:nth-child(2) .tree-card-line-top::after {
-    border-left: 0 none;
-}
 
 .tree-container li:last-child>.tree-card:first-child .tree-card-line-top::after {
-    border-left: 0 none;
+    border: 0 none;
 }
+.tree-container li:first-child>.tree-card:nth-child(2) .tree-card-line-top::before {
+    border: 0 none;
+}
+
+
 
 .tree-container li:last-child>.tree-card:nth-child(2) .tree-card-line-top::after,
 .tree-container li:last-child>.tree-card:only-child .tree-card-line-top::after {
     left: auto;
     right: 50%;
     border-right: 2px solid var(--line-color);
-    border-top-right-radius: 5px;
+    border-top-right-radius: 10px;
 }
 
 .tree-card:first-child .tree-card-line-top::before,
 .tree-card:last-child .tree-card-line-top::after {
-    border-top: 0 none;
+    border: 0 none;
 }
 
 .tree-card:last-child .tree-card-line-top::after,
 .tree-card:nth-child(2) .tree-card-line-top::after {
-    border-top: 0 none;
+    border: 0 none;
 }
 
 .tree-container ul:first-child>li:first-child>.tree-card>.tree-card-line-top::before,
 .tree-container ul:first-child>li:first-child>.tree-card>.tree-card-line-top::after {
     border: 0 none;
 }
-
-
+.tree-container li:last-child>.tree-card:nth-child(2) .tree-card-line-top::before,
+.tree-container li:last-child>.tree-card:last-child .tree-card-line-top::before {
+    border-top-right-radius: 10px;
+}
 
 
 
@@ -234,12 +242,16 @@ code {
     
     will-change: transform;
     transition: transform 450ms;
+    border: 2px solid var(--line-color);
 }
 .card-image:hover {
     cursor: pointer;
     
     transition: transform 120ms;
     transform: translateY(-10px);
+}
+#me > .card-image {
+    border-color: rgb(0, 255, 115);
 }
 
 .card-image img {
