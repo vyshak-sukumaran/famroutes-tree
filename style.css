@@ -26,6 +26,7 @@ code {
 
 .tree-container {
     --line-color: rgb(255, 255, 255);
+    --border-highlight: rgb(0, 255, 191);
     overflow: hidden;
     width: fit-content;
     height: fit-content;
@@ -87,6 +88,11 @@ code {
 
 .tree-container li:first-child::before,
 .tree-container li:last-child::after {
+    border: 0 none;
+}
+
+.tree-container>ul:first-child>li::before,
+.tree-container>ul:first-child>li::after {
     border: 0 none;
 }
 
@@ -217,8 +223,9 @@ code {
     border: 0 none;
 }
 
-.tree-container ul:first-child>li:first-child>.tree-card>.tree-card-line-top::before,
-.tree-container ul:first-child>li:first-child>.tree-card>.tree-card-line-top::after {
+.tree-container ul:first-child>li>.tree-card>.tree-card-line-top::before,
+.tree-container ul:first-child>li>.tree-card>.tree-card-line-top::after,
+.tree-container ul:first-child>li>.tree-card:nth-child(2)>.tree-card-line-top::after {
     border: 0 none;
 }
 
@@ -226,7 +233,20 @@ code {
 .tree-container li:last-child>.tree-card:last-child .tree-card-line-top::before {
     border-top-right-radius: 10px;
 }
-
+.tree-container ul> .single:first-child::after {
+    border-top-left-radius: 10px;
+}
+.tree-container ul>li:first-child .single .tree-card-line-top::after{
+    border-left: 2px solid var(--line-color);
+}
+.tree-container ul> .single:last-child::before {
+    border-top-right-radius: 10px;
+}
+.tree-container ul> .single > .tree-card::after,
+.tree-container ul> .single > .tree-card::before {
+    border-bottom: 0 none;
+    border-radius: 0;
+}
 .card-image {
     box-sizing: border-box;
     position: relative;
@@ -251,7 +271,7 @@ code {
 
 /* owner card hightlighting */
 #me>.card-image {
-    border-color: rgb(0, 255, 115);
+    border-color: var(--border-highlight);
 }
 
 .card-image img {
