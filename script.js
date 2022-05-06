@@ -88,13 +88,6 @@ const showData = (data) => {
 
     let treeContainer = document.querySelector(".tree-container")
 
-    let demo = data.map((val) => {
-        return `
-            <li>
-            
-            </li>
-        `
-    })
 }
 
 
