@@ -57,7 +57,7 @@ code {
     text-align: center;
     position: relative;
     white-space: nowrap;
-    padding: 0 10px;
+    /* padding: 0 10px; */
 }
 
 .tree-container li::before,
@@ -192,61 +192,53 @@ code {
     left: 50%;
     border-left: 2px solid var(--line-color);
 }
+.tree-container ul> li:first-child .tree-card:first-child .tree-card-line-top::before {
+    border-top: 0 none;
+}
+.tree-container ul> li.single >.tree-card::before,
+.tree-container ul> li.single >.tree-card::after {
+    border-bottom: 0 none;
+    border-radius: 0;
+}
 
-.tree-container li:first-child>.tree-card:first-child .tree-card-line-top::after {
+/* partner top line removal */
+.tree-container ul>li>.tree-card:nth-child(2) .tree-card-line-top::before,
+.tree-container ul>li>.tree-card:nth-child(2) .tree-card-line-top::after {
+    border-left: 0 none;
+}
+/* last horizontal card top line removal */
+.tree-container ul>li:last-child> .tree-card:last-child > .tree-card-line-top::before,
+.tree-container ul>li:last-child> .tree-card:last-child > .tree-card-line-top::after {
+    border-top: 0 none;
+}
+.tree-container ul>li:last-child::before,
+.tree-container ul>li:last-child> .tree-card .tree-card-line-top::after {
+    border-top: 0 none;
+}
+.tree-container ul>li:last-child> .tree-card:first-child > .tree-card-line-top::before {
+    border-top: 2px solid var(--line-color);
+    border-top-right-radius: 10px;
+}
+
+
+
+/* top border radius */
+.tree-container ul>li:first-child> .tree-card:first-child .tree-card-line-top::after {
     border-top-left-radius: 10px;
 }
-
-.tree-container li:last-child>.tree-card:first-child .tree-card-line-top::after {
-    border: 0 none;
+.tree-container ul>li.single:first-child::after {
+    border-top-left-radius: 10px;
 }
-
-.tree-container li:first-child>.tree-card:nth-child(2) .tree-card-line-top::before {
-    border: 0 none;
-}
-
-.tree-container li:last-child>.tree-card:nth-child(2) .tree-card-line-top::after,
-.tree-container li:last-child>.tree-card:only-child .tree-card-line-top::after {
+.tree-container ul>li:last-child> .tree-card:first-child .tree-card-line-top::after {
     left: auto;
     right: 50%;
+    border-left: 0 none;
     border-right: 2px solid var(--line-color);
     border-top-right-radius: 10px;
 }
 
-.tree-card:first-child .tree-card-line-top::before,
-.tree-card:last-child .tree-card-line-top::after {
-    border: 0 none;
-}
 
-.tree-card:last-child .tree-card-line-top::after,
-.tree-card:nth-child(2) .tree-card-line-top::after {
-    border: 0 none;
-}
 
-.tree-container ul:first-child>li>.tree-card>.tree-card-line-top::before,
-.tree-container ul:first-child>li>.tree-card>.tree-card-line-top::after,
-.tree-container ul:first-child>li>.tree-card:nth-child(2)>.tree-card-line-top::after {
-    border: 0 none;
-}
-
-.tree-container li:last-child>.tree-card:nth-child(2) .tree-card-line-top::before,
-.tree-container li:last-child>.tree-card:last-child .tree-card-line-top::before {
-    border-top-right-radius: 10px;
-}
-.tree-container ul> .single:first-child::after {
-    border-top-left-radius: 10px;
-}
-.tree-container ul>li:first-child .single .tree-card-line-top::after{
-    border-left: 2px solid var(--line-color);
-}
-.tree-container ul> .single:last-child::before {
-    border-top-right-radius: 10px;
-}
-.tree-container ul> .single > .tree-card::after,
-.tree-container ul> .single > .tree-card::before {
-    border-bottom: 0 none;
-    border-radius: 0;
-}
 .card-image {
     box-sizing: border-box;
     position: relative;
@@ -317,4 +309,10 @@ code {
     font-size: 1rem;
     font-weight: 500;
     color: rgb(255, 255, 255);
+}
+
+/* first child top lines removal */
+.tree-container ul:first-child>li:first-child> .tree-card .tree-card-line-top::before,
+.tree-container ul:first-child>li:first-child> .tree-card .tree-card-line-top::after {
+    border: 0 none;
 }
