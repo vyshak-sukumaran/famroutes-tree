@@ -18,15 +18,15 @@ code {
     width: 100%;
     height: 100vh;
     overflow: hidden;
-    background-color: #36096d;
-    background-image: linear-gradient(315deg, #36096d 0%, #37d5d6 74%);
+    background-image: linear-gradient(-225deg, #2CD8D5 0%, #6B8DD6 48%, #8E37D7 100%);
     padding: 50px;
     padding-top: 10px;
 }
 
 .tree-container {
     --line-color: rgb(255, 255, 255);
-    --border-highlight: rgb(0, 255, 191);
+    --border-highlight: rgb(0, 255, 149);
+    --border-primary: rgb(0, 250, 250);
     overflow: hidden;
     width: fit-content;
     height: fit-content;
@@ -74,7 +74,8 @@ code {
 .tree-container li::after {
     right: auto;
     left: 50%;
-    /* border-left: 2px solid var(--line-color); */
+    border-left: 2px solid var(--line-color);
+    height: 40px;
 }
 
 .tree-container li:only-child::after,
@@ -88,14 +89,24 @@ code {
 
 .tree-container li:first-child::before,
 .tree-container li:last-child::after {
-    border: 0 none;
+    border-top: 0 none;
 }
 
 .tree-container>ul:first-child>li::before,
 .tree-container>ul:first-child>li::after {
     border: 0 none;
 }
-
+.tree-container li:first-child::after {
+    border-top-left-radius: 10px;
+}
+.tree-container li:last-child::before {
+    border-top-right-radius: 10px;
+    border-right: 2px solid var(--line-color);
+    height: 40px;
+}
+.tree-container li:last-child::after {
+    border-left: 0 none;
+}
 /* .tree-container li:last-child::before {
     border-right: 2px solid var(--line-color);
     border-radius: 0 5px 0 0;
@@ -110,11 +121,18 @@ code {
 } */
 
 .tree-card {
+    margin-top: 40px;
     overflow: hidden;
     display: inline-flex;
     padding-bottom: 40px;
     position: relative;
     flex-direction: column;
+}
+.tree-container li> div.tree-card:nth-child(2){
+    margin-left: -5px;
+}
+.tree-container ul>li:only-child>div.tree-card {
+    margin-top: 0;
 }
 
 .tree-card::before,
@@ -192,51 +210,72 @@ code {
     left: 50%;
     border-left: 2px solid var(--line-color);
 }
+
 .tree-container ul> li:first-child .tree-card:first-child .tree-card-line-top::before {
     border-top: 0 none;
 }
-.tree-container ul> li.single >.tree-card::before,
-.tree-container ul> li.single >.tree-card::after {
-    border-bottom: 0 none;
-    border-radius: 0;
-}
-
-/* partner top line removal */
-.tree-container ul>li>.tree-card:nth-child(2) .tree-card-line-top::before,
-.tree-container ul>li>.tree-card:nth-child(2) .tree-card-line-top::after {
+.tree-container li>div.tree-card:nth-child(2)>.tree-card-line-top::after {
+    border-top: 0 none;
     border-left: 0 none;
-}
-/* last horizontal card top line removal */
-.tree-container ul>li:last-child> .tree-card:last-child > .tree-card-line-top::before,
-.tree-container ul>li:last-child> .tree-card:last-child > .tree-card-line-top::after {
-    border-top: 0 none;
-}
-.tree-container ul>li:last-child::before,
-.tree-container ul>li:last-child> .tree-card .tree-card-line-top::after {
-    border-top: 0 none;
-}
-.tree-container ul>li:last-child> .tree-card:first-child > .tree-card-line-top::before {
-    border-top: 2px solid var(--line-color);
+    border-right: 2px solid var(--line-color);
+    position: absolute;
+    right: 50%;
+    left: auto;
     border-top-right-radius: 10px;
 }
-
-
-
+.tree-container li .tree-card:nth-child(2) .tree-card-line-top::before {
+    border-top-right-radius: 10px;
+}
 /* top border radius */
-.tree-container ul>li:first-child> .tree-card:first-child .tree-card-line-top::after {
+.tree-container li .tree-card:first-child .tree-card-line-top::after {
     border-top-left-radius: 10px;
 }
 .tree-container ul>li.single:first-child::after {
     border-top-left-radius: 10px;
 }
-.tree-container ul>li:last-child> .tree-card:first-child .tree-card-line-top::after {
-    left: auto;
-    right: 50%;
-    border-left: 0 none;
-    border-right: 2px solid var(--line-color);
-    border-top-right-radius: 10px;
+
+.tree-container li .tree-card:first-child > .card-image{
+    border-color: var(--border-primary);
+}
+.tree-container li.single .tree-card:first-child > .card-image{
+    border-color: var(--line-color);
+}
+.tree-container li.single .tree-card> .tree-card-line-top::before,
+.tree-container li.single .tree-card> .tree-card-line-top::after {
+    border-top: 0 none;
+    border-radius: 0;
 }
 
+/* single card */
+/* single card line removal */
+.tree-container ul> li.single >.tree-card::before,
+.tree-container ul> li.single >.tree-card::after {
+    border-bottom: 0 none;
+    border-radius: 0;
+}
+.tree-container ul> li.single:first-child> div.tree-card .tree-card-line-top::after {
+    border-top-left-radius: 10px;
+}
+.tree-container ul> li.single:last-child> div.tree-card .tree-card-line-top::after {
+    border-left: 0 none;
+    border-right: 2px solid var(--line-color);
+    position: absolute;
+    right: 50%;
+    left: auto;
+    border-top-right-radius: 10px;
+}
+.tree-container li.single> div.tree-card {
+    margin-top: 0;
+    padding-bottom: 0;
+}
+.tree-container li.single> div.tree-card::after {
+    border: none;
+}
+.tree-container li.single::before,
+.tree-container li.single::after {
+    border-left: 0 none;
+    border-right: 0 none;
+}
 
 
 .card-image {
@@ -314,5 +353,9 @@ code {
 /* first child top lines removal */
 .tree-container ul:first-child>li:first-child> .tree-card .tree-card-line-top::before,
 .tree-container ul:first-child>li:first-child> .tree-card .tree-card-line-top::after {
+    border: 0 none;
+}
+.tree-container ul:first-child>li.single:only-child> .tree-card .tree-card-line-top::before,
+.tree-container ul:first-child>li.single:only-child> .tree-card .tree-card-line-top::after {
     border: 0 none;
 }
