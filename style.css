@@ -276,7 +276,11 @@ code {
     border-left: 0 none;
     border-right: 0 none;
 }
-
+.tree-container li.single>div.tree-card> .tree-card-line-top,
+.tree-container li.single>div.tree-card> .tree-card-line-top::before,
+.tree-container li.single>div.tree-card> .tree-card-line-top::after {
+    height: 80px;
+}
 
 .card-image {
     box-sizing: border-box;
